@@ -3,7 +3,7 @@ import { useState } from "react";
 import api from "services/api";
 import estilos from "./ModalLoginUsuario.module.css";
 import ilustracaoLogin from "./assets/ilustracao-login.svg";
-import { validaDadosFormulario } from "validacoes/validaFomulario";
+import { validaDadosFormularioLogin } from "validacoes/validaFomulario";
 
 export default function ModalLoginUsuario({
   aberta,
@@ -22,7 +22,7 @@ export default function ModalLoginUsuario({
       senha,
     };
 
-    const result = await validaDadosFormulario(usuario);
+    const result = await validaDadosFormularioLogin(usuario);
     if (!result.valid) {
       setErro({
         path: result.path,

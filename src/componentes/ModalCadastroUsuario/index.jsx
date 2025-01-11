@@ -3,7 +3,7 @@ import { useState } from "react";
 import api from "services/api";
 import ilustracaoCadastro from "./assets/ilustracao-cadastro.svg";
 import Botao from "componentes/Botao";
-import { validaDadosFormulario } from "validacoes/validaFomulario";
+import { validaDadosFormularioCadastro } from "validacoes/validaFomulario";
 
 export default function ModalCadastroUsuario({ aberta, aoFechar }) {
   const [nome, setNome] = useState("");
@@ -19,7 +19,7 @@ export default function ModalCadastroUsuario({ aberta, aoFechar }) {
       senha,
     };
 
-    const result = await validaDadosFormulario(usuario);
+    const result = await validaDadosFormularioCadastro(usuario);
 
     if (!result.valid) {
       setErro({

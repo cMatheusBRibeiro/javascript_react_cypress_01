@@ -1,16 +1,60 @@
 const moment = require("moment");
 
+const datetime = moment().format("YYYY_MM_DD_HH_mm_ss");
+const mockNome = `Bot Cypress ${datetime}`;
+const mockEmail = `bot.cypress.${datetime}@gmail.com`;
+const mockSenha = "123456";
+
 describe("Formulário de cadastro", () => {
   beforeEach(() => {
     cy.visit(Cypress.env("URL"));
+    cy.getByTestId("botao-cadastro").click();
+  });
+
+  describe("Campo nome em branco", () => {
+    beforeEach(() => {
+      cy.getByTestId("email-input").type(mockEmail);
+      cy.getByTestId("senha-input").type(mockSenha);
+      cy.getByTestId("checkbox-input").click();
+      cy.getByTestId("botao-enviar").click();
+    });
+
+    it("Deve apresentar uma mensagem", () => {
+      cy.getByTestId("nome-input-mensagem-erro").should("exist");
+    });
+
+    it("Deve apresentar uma mensagem correta", () => {
+      cy.getByTestId("nome-input-mensagem-erro").should(
+        "have.text",
+        "O campo de nome é obrigatório"
+      );
+    });
+  });
+
+  describe("Campo senha em branco", () => {
+    beforeEach(() => {
+      cy.getByTestId("nome-input").type(mockNome);
+      cy.getByTestId("email-input").type(mockEmail);
+      cy.getByTestId("checkbox-input").click();
+      cy.getByTestId("botao-enviar").click();
+    });
+
+    it("Deve apresentar uma mensagem", () => {
+      cy.getByTestId("senha-input-mensagem-erro").should("exist");
+    });
+
+    it("Deve apresentar uma mensagem correta", () => {
+      cy.getByTestId("senha-input-mensagem-erro").should(
+        "have.text",
+        "O campo de senha é obrigatório"
+      );
+    });
   });
 
   it("Deve realizar o cadastro com sucesso", () => {
-    const datetime = moment().format("YYYY_MM_DD_HH_mm_ss");
-    cy.getByTestId("botao-cadastro").click();
-    cy.getByTestId("nome-input").type("Bot Cypress");
-    cy.getByTestId("email-input").type(`bot.cypress.${datetime}@gmail.com`);
-    cy.getByTestId("senha-input").type("123456");
+    cy.getByTestId("nome-input").type(mockNome);
+    cy.getByTestId("email-input").type(mockEmail);
+    cy.getByTestId("senha-input").type(mockSenha);
     cy.getByTestId("checkbox-input").click();
     cy.getByTestId("botao-enviar").click();
 
