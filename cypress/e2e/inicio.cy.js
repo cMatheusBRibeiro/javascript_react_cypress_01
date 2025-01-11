@@ -1,10 +1,13 @@
 describe("Página inicial", () => {
+  beforeEach(() => {
+    cy.visit(Cypress.env("URL"));
+  });
+
   it("Deve acessar a página inicial da aplicação", () => {
-    cy.visit("http://localhost:3000");
+    cy.title().should("eq", "Bytebank");
   });
 
   it("Deve verificar se o título principal está correto", () => {
-    cy.visit("http://localhost:3000");
     cy.verifyContent(
       "titulo-principal",
       "Experimente mais liberdade no controle da sua vida financeira. Crie sua conta com a gente!"
@@ -12,10 +15,6 @@ describe("Página inicial", () => {
   });
 
   describe("Vantagens da Bytebank", () => {
-    beforeEach(() => {
-      cy.visit("http://localhost:3000");
-    });
-
     it("Deve verificar se o título de vantagens está correto", () => {
       cy.verifyContent(
         "titulo-vantagens-do-banco",
