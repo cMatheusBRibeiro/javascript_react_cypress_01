@@ -1,9 +1,9 @@
-import Botao from 'componentes/Botao';
-import { useState } from 'react';
-import api from 'services/api';
-import estilos from './ModalLoginUsuario.module.css';
-import ilustracaoLogin from './assets/ilustracao-login.svg';
-import { validaDadosFormulario } from 'validacoes/validaFomulario';
+import Botao from "componentes/Botao";
+import { useState } from "react";
+import api from "services/api";
+import estilos from "./ModalLoginUsuario.module.css";
+import ilustracaoLogin from "./assets/ilustracao-login.svg";
+import { validaDadosFormulario } from "validacoes/validaFomulario";
 
 export default function ModalLoginUsuario({
   aberta,
@@ -11,8 +11,8 @@ export default function ModalLoginUsuario({
   aoEfetuarLogin,
   salvaNomeUsuario,
 }) {
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const [erro, setErro] = useState({});
 
   const onSubmit = async (event) => {
@@ -32,14 +32,14 @@ export default function ModalLoginUsuario({
     }
 
     api
-      .post('/public/login', usuario)
+      .post("/public/login", usuario)
       .then((resposta) => {
-        sessionStorage.setItem('token', resposta.data.access_token);
-        setEmail('');
-        setSenha('');
+        sessionStorage.setItem("token", resposta.data.access_token);
+        setEmail("");
+        setSenha("");
         setErro({
-          path: '',
-          message: '',
+          path: "",
+          message: "",
         });
         aoEfetuarLogin();
         const nomeUsuario = resposta.data.user.nome;
@@ -48,12 +48,12 @@ export default function ModalLoginUsuario({
       .catch((erro) => {
         if (erro?.response?.data?.message) {
           setErro({
-            path: 'message-erro',
+            path: "message-erro",
             message: erro.response.data.message,
           });
         } else {
           alert(
-            'Aconteceu um erro inesperado ao efetuar login! Contate o suporte'
+            "Aconteceu um erro inesperado ao efetuar login! Contate o suporte"
           );
           aoFechar();
         }
@@ -82,7 +82,7 @@ export default function ModalLoginUsuario({
             src={ilustracaoLogin}
             alt="pessoa ao lado de um dispositivo móvel"
           />
-          {erro.path == 'message-erro' ? <span>{erro.message}</span> : ''}
+          {erro.path == "message-erro" ? <span>{erro.message}</span> : ""}
           <p className={estilos.modal__descricao}>Login</p>
           <form onSubmit={onSubmit} className={estilos.modal__form}>
             <label htmlFor="email">
@@ -91,15 +91,17 @@ export default function ModalLoginUsuario({
                 type="email"
                 name="email"
                 id="email"
-                data-test="email-input"
+                data-testid="email-input"
                 placeholder="Digite seu email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
-              {erro.path === 'email' ? (
-                <span data-test="mensagem-erro">{erro.message}</span>
+              {erro.path === "email" ? (
+                <span data-testid="email-input-mensagem-erro">
+                  {erro.message}
+                </span>
               ) : (
-                ''
+                ""
               )}
             </label>
             <label htmlFor="senha">
@@ -108,14 +110,16 @@ export default function ModalLoginUsuario({
                 type="password"
                 id="senha"
                 placeholder="Digite sua senha"
-                data-test="senha-input"
+                data-testid="senha-input"
                 value={senha}
                 onChange={(event) => setSenha(event.target.value)}
               />
-              {erro.path === 'senha' ? (
-                <span data-test="mensagem-erro">{erro.message}</span>
+              {erro.path === "senha" ? (
+                <span data-testid="senha-input-mensagem-erro">
+                  {erro.message}
+                </span>
               ) : (
-                ''
+                ""
               )}
             </label>
             <Botao acaoBotao="enviar" texto="Acessar" />
