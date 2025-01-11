@@ -4,21 +4,18 @@ describe("Formulário de login", () => {
   });
 
   describe("E-mail passado é inválido", () => {
-    it("Deve exibir uma mensagem", () => {
+    beforeEach(() => {
       cy.getByTestId("botao-login").click();
       cy.getByTestId("email-input").type("admin@gmail");
       cy.getByTestId("senha-input").type("123456");
       cy.getByTestId("botao-enviar").click();
+    });
 
+    it("Deve exibir uma mensagem", () => {
       cy.getByTestId("email-input-mensagem-erro").should("exist");
     });
 
     it("Deve exibir uma mensagem correta", () => {
-      cy.getByTestId("botao-login").click();
-      cy.getByTestId("email-input").type("admin@gmail");
-      cy.getByTestId("senha-input").type("123456");
-      cy.getByTestId("botao-enviar").click();
-
       cy.getByTestId("email-input-mensagem-erro").should(
         "have.text",
         "O email digitado é inválido"
@@ -27,19 +24,17 @@ describe("Formulário de login", () => {
   });
 
   describe("E-mail é obrigatório e deixa em branco", () => {
-    it("Deve exibir uma mensagem", () => {
+    beforeEach(() => {
       cy.getByTestId("botao-login").click();
       cy.getByTestId("senha-input").type("123456");
       cy.getByTestId("botao-enviar").click();
+    });
 
+    it("Deve exibir uma mensagem", () => {
       cy.getByTestId("email-input-mensagem-erro").should("exist");
     });
 
     it("Deve exibir uma mensagem correta", () => {
-      cy.getByTestId("botao-login").click();
-      cy.getByTestId("senha-input").type("123456");
-      cy.getByTestId("botao-enviar").click();
-
       cy.getByTestId("email-input-mensagem-erro").should(
         "have.text",
         "O campo email é obrigatório"
