@@ -11,11 +11,11 @@ describe("Formulário de login", () => {
       cy.getByTestId("botao-enviar").click();
     });
 
-    it("Deve exibir uma mensagem", () => {
+    it("Deve apresentar a mensagem de erro", () => {
       cy.getByTestId("email-input-mensagem-erro").should("exist");
     });
 
-    it("Deve exibir uma mensagem correta", () => {
+    it("A mensagem de e-mail inválido deve estar adequada", () => {
       cy.getByTestId("email-input-mensagem-erro").should(
         "have.text",
         "O email digitado é inválido"
@@ -30,11 +30,11 @@ describe("Formulário de login", () => {
       cy.getByTestId("botao-enviar").click();
     });
 
-    it("Deve exibir uma mensagem", () => {
+    it("Deve apresentar a mensagem de erro", () => {
       cy.getByTestId("email-input-mensagem-erro").should("exist");
     });
 
-    it("Deve exibir uma mensagem correta", () => {
+    it("A mensagem de e-mail obrigatório deve estar adequada", () => {
       cy.getByTestId("email-input-mensagem-erro").should(
         "have.text",
         "O campo email é obrigatório"

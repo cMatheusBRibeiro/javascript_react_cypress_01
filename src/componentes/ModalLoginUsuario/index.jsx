@@ -3,7 +3,7 @@ import { useState } from "react";
 import api from "services/api";
 import estilos from "./ModalLoginUsuario.module.css";
 import ilustracaoLogin from "./assets/ilustracao-login.svg";
-import { validaDadosFormularioLogin } from "validacoes/validaFomulario";
+import { validaDadosFormularioLogin } from "validacoes/validaFormularioLogin";
 
 export default function ModalLoginUsuario({
   aberta,

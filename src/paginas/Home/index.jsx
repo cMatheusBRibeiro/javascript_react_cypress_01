@@ -1,11 +1,11 @@
-import { Outlet, useLocation } from 'react-router-dom';
-import { Extrato, Menu, Principal, Transacao } from 'componentes';
-import { calculaNovoSaldo } from 'utils';
-import { salvaTransacao } from 'services/transacoes';
-import { atualizaSaldo } from 'services/saldo';
-import useListaTransacoes from 'hooks/useListaTransacoes';
-import useSaldo from 'hooks/useSaldo';
-import estilos from './App.module.css';
+import { Outlet, useLocation } from "react-router-dom";
+import { Extrato, Menu, Principal, Transacao } from "componentes";
+import { calculaNovoSaldo } from "utils";
+import { salvaTransacao } from "services/transacoes";
+import { atualizaSaldo } from "services/saldo";
+import useListaTransacoes from "hooks/useListaTransacoes";
+import useSaldo from "hooks/useSaldo";
+import estilos from "./App.module.css";
 
 export default function Home() {
   const [saldo, setSaldo] = useSaldo();
@@ -22,11 +22,11 @@ export default function Home() {
 
   return (
     <>
-      <main data-test="app-home" className={estilos.caixa}>
+      <main data-testid="app-home" className={estilos.caixa}>
         <Menu path={location.pathname} />
         <div className={estilos.envelope}>
           <Principal saldo={saldo} />
-          {location.pathname === '/home' && (
+          {location.pathname === "/home" && (
             <Transacao realizarTransacao={realizarTransacao} />
           )}
           <Outlet />
