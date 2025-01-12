@@ -1,6 +1,6 @@
 describe("Página inicial", () => {
   beforeEach(() => {
-    cy.visit(Cypress.env("URL"));
+    cy.visit("/");
   });
 
   it("Deve acessar a página inicial da aplicação", () => {

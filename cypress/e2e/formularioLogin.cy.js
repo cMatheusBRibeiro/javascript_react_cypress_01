@@ -1,6 +1,6 @@
 describe("Formulário de login", () => {
   beforeEach(() => {
-    cy.visit(Cypress.env("URL"));
+    cy.visit("/");
   });
 
   describe("E-mail passado é inválido", () => {
