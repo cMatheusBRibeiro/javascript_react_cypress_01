@@ -1,8 +1,8 @@
 const moment = require("moment");
 
 const datetime = moment().format("YYYY_MM_DD_HH_mm_ss");
-const mockNome = `Bot Cypress ${datetime}`;
-const mockEmail = `bot.cypress.${datetime}@gmail.com`;
+const mockNome = `Bot Cypress ${datetime} ${Cypress.env("browser")}`;
+const mockEmail = `bot.cypress.${datetime}.${Cypress.env("browser")}@gmail.com`;
 const mockSenha = "123456";
 
 describe("Formulário de cadastro", () => {
