@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
-import estilos from './MenuLateral.module.css';
+import { Link } from "react-router-dom";
+import estilos from "./MenuLateral.module.css";
 
 const listaMenuLateral = [
-  { link: 'Início', href: '/home' },
-  { link: 'Cartões', href: '/home/cartoes' },
-  { link: 'Serviços', href: '/home/servicos' },
-  { link: 'Investimentos', href: '/home/investimentos' },
+  { link: "Início", href: "/home" },
+  { link: "Cartões", href: "/home/cartoes" },
+  { link: "Serviços", href: "/home/servicos" },
+  { link: "Investimentos", href: "/home/investimentos" },
 ];
 
 export default function MenuLateral({
@@ -14,7 +14,7 @@ export default function MenuLateral({
   aoEfetuarLogout,
 }) {
   return (
-    <nav data-test="menu-lateral" className={estilos.menu}>
+    <nav data-testid="menu-lateral" className={estilos.menu}>
       <button
         className={estilos.fechar__modal}
         onClick={() => toggleHamburguer()}

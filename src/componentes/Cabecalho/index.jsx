@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   ModalCadastroUsuario,
@@ -9,21 +9,21 @@ import {
   Botao,
   BurguerIcon,
   MenuLateral,
-} from 'componentes';
+} from "componentes";
 
-import { ReactComponent as Logo } from 'assets/bytebank.svg';
-import avatarUsuario from 'assets/avatar.svg';
-import estilos from './Cabecalho.module.css';
+import { ReactComponent as Logo } from "assets/bytebank.svg";
+import avatarUsuario from "assets/avatar.svg";
+import estilos from "./Cabecalho.module.css";
 
 export default function Cabecalho({ path }) {
   const [modalCadastroAberta, setModalCadastroAberta] = useState(false);
   const [modalLoginAberta, setModalLoginAberta] = useState(false);
   const [burguerOpen, setBurguerOpen] = useState(false);
-  const [nomeUsuario, setNomeUsuario] = useState('');
+  const [nomeUsuario, setNomeUsuario] = useState("");
 
   let navigate = useNavigate();
 
-  const token = sessionStorage.getItem('token');
+  const token = sessionStorage.getItem("token");
 
   const [usuarioEstaLogado, setUsuarioEstaLogado] = useState(token != null);
 
@@ -34,13 +34,13 @@ export default function Cabecalho({ path }) {
   const aoEfetuarLogin = () => {
     setModalLoginAberta(false);
     setUsuarioEstaLogado(true);
-    navigate('/home');
+    navigate("/home");
   };
 
   const aoEfetuarLogout = () => {
     setUsuarioEstaLogado(false);
-    sessionStorage.removeItem('token');
-    navigate('/');
+    sessionStorage.removeItem("token");
+    navigate("/");
   };
 
   const salvaNomeUsuario = (nomeUsuario) => {

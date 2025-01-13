@@ -16,3 +16,7 @@ Cypress.Commands.add("loginWithCorrectCredentials", () => {
 Cypress.Commands.add("logout", () => {
   cy.getByTestId("botao-sair").click();
 });
+
+Cypress.Commands.add("logoutInMobile", () => {
+  cy.getByTestId("menu-lateral").find("a").contains("Sair").click();
+});
