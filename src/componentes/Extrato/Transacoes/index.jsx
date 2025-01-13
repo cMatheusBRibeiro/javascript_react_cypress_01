@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function Transacoes({ transacao, estilos }) {
   return (
@@ -6,9 +6,9 @@ export default function Transacoes({ transacao, estilos }) {
       <p className={estilos.mes}>{transacao.mes}</p>
       <div className={estilos.transacao}>
         <p data-testid="tipoTransacao">{transacao.transacao}</p>
-        <span>{transacao.data}</span>
+        <span data-testid="dataTransacao">{transacao.data}</span>
       </div>
-      {transacao.transacao === 'Transferência' ? (
+      {transacao.transacao === "Transferência" ? (
         <h3
           data-testid="valorTransacao"
           className={estilos.valor}

@@ -12,3 +12,7 @@ Cypress.Commands.add("loginWithCorrectCredentials", () => {
   cy.getByTestId("senha-input").type("123456");
   cy.getByTestId("botao-enviar").click();
 });
+
+Cypress.Commands.add("logout", () => {
+  cy.getByTestId("botao-sair").click();
+});
